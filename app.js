@@ -19,7 +19,7 @@ var list = document.getElementById ('imageList');
 // Global variables
 // -----------------
 var allProducts = [];
-var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
+// var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
 var newArray =[];
 var oldArray =[];
 var clickCounter = 0;
@@ -158,7 +158,7 @@ function handleClick(event) {
 function resultButtonHandler(event){
   for (var i = 0; i < allProducts.length; i++){
     var liEl = document.createElement ('li');
-    liEl.textContent = 'Image name is ' + allProducts[i].name + ',it has been viewed ' + allProducts[i].views + ' times. And has been clicked ' + allProducts[i].clicks + ' times.';
+    liEl.textContent = ' Name: ' + allProducts[i].name + ' ,Number of views ' + allProducts[i].views + ' ,Number of clicks ' + allProducts[i].clicks + ' times.';
     list.appendChild(liEl)
   }
 }
