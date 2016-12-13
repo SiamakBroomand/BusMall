@@ -51,6 +51,7 @@ function makeImageObj(){
   new Image ('water-can.jpg', 'water-can');
   new Image ('wine-glass', 'wine-glass');
 }
+
 makeImageObj();
 
 
@@ -58,33 +59,34 @@ makeImageObj();
 //eventhandler
 //click - prevent-default //tally click // get 3 new imgs// stop duplicates// alert pick click// clear add imgs//total<25
 // remove event listener after 25//show button
+
 function selectThree(){
   if (counter >=25){
-    imageContainer.removeEventListener('click', handleClick);
-  //  return;
+    imageContainer.removeEventListener('click', handleImageClick);
+    return;
   }
   else{
     leftImg = Math.floor(Math.random() * 20);
     centerImg = Math.floor(Math.random() * 20);
     rightImg = Math.floor(Math.random() * 20);
   }
-}
 
+}
 selectThree();
 
 //handleClick
-function handleClick(event){
+function handleImageClick(event){
+  // document.addEventListener(path, name)
   event.preventDefault();
+
   if (leftImg === centerImg || leftImg ===rightImg || centerImg === leftImg || centerImg === rightImg || rightImg === leftImg || rightImg === centerImg){
     selectThree();
-  } else {
+  }
+  else {
     left.src = allImages[leftImg].src;
     center.src = allImages[centerImg].src;
     right.src = allImages[rightImg].src;
   }
-
-
-
 }
 
 
@@ -109,4 +111,4 @@ function handleClick(event){
 
 //eventlistener
 //click add
-imageContainer.addEventListener('click', handleClick);
+imageContainer.addEventListener('click', handleImageClick);
