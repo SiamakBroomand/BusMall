@@ -143,7 +143,7 @@ function handleClick(event) {
   console.log(clickCounter, 'total clicks so far');
 
   // check whether total clicks <25
-  if (clickCounter > 5 ){
+  if (clickCounter > 25 ){
     result.textContent = 'Click Resluts';
     resultContainer.appendChild(result);
     return alert('No more clicks!');
