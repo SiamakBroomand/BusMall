@@ -197,6 +197,7 @@ var data = {
   labels: names , // titles array we declared earlier
   datasets: [
     {
+      label: 'Clicks',
       data: clicks, // votes array we declared earlier
       backgroundColor:
         'lightblue',
@@ -204,6 +205,7 @@ var data = {
         'purple'
     },
     {
+      label: 'Views',
       data: views, // votes array we declared earlier
       backgroundColor:
         'darkgray',
@@ -236,6 +238,7 @@ document.getElementById('Show-Chart').addEventListener('click', function(){
 if (chartDrawn) {
   myChart.update();
 }
+
 
 
 // ++++++++++++++++++++++++++++
