@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <title>BusMall</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
-    <canvas id="surveychart" width="400" height="400"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
   </head>
 
   <body>
@@ -22,10 +21,13 @@
     <img id="center" src="" width="200" height="250"/>
     <img id="right" src="" width="200" height="250"/>
   </section>
-  <div id = "result"></div>
-<ul id ="imageList"></ul>
 
-
+<div id="result"></div>
+<ul id="imageList"></ul>
+<section id="chartList">
+<button id ="Show-Chart">Show chart</button>
+</section>
+<canvas id="surveychart" width="400" height="400"></canvas>
     <script src="app.js" type="text/javascript"></script>
   </body>
 </html>

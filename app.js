@@ -15,16 +15,16 @@ var right = document.getElementById('right');
 var result = document.createElement('button');
 var resultContainer = document.getElementById('result');
 var list = document.getElementById ('imageList');
-// var ctx = document.getElementById('surveychart');
-// var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
-
 
 // Global variables
 // -----------------
 var allProducts = [];
+var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
 var newArray =[];
 var oldArray =[];
 var clickCounter = 0;
+var myChart;
+var chartDrawn = false;
 
 // Constructor
 // -----------------
@@ -65,31 +65,26 @@ new Product ('BusMallphotos/wine-glass.jpg', 'wine-glass');
 // }
 // console.table(allProducts);
 
-
-//chart
-var myDoughtnutChart = new Chart(ctx,{
-  type: 'doughnut',
-  data: data,
-  // options: options
-});
-var data = {
-  labels:[
-    'Name',
-    'Views',
-    'Clicks'
-  ],
-  datasets: [
-    data: [name, views, clickCounter],
-  ],
-}
-myDoughtnutChart();
-
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 // DECLARE FUNCTIONS
 // (DEFINE ACTIONS)
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
+
+
+// for chart
+// var views =[];
+// var clicks =[];
+//
+// function updateChartArrays(){
+//   for (var i = 0; i < names.length; i++){
+//     views[i] = allProducts[i].filepath;
+//     clicks[i] = allProducts[i].views;
+//   }
+// }
+
+
 
 function rand() {
   return Math.floor(Math.random() * allProducts.length);
@@ -136,6 +131,15 @@ function showThreePics() {
 // function renderList() {
   // display a list of items and total clicks/views
 // }
+var clicks = [];
+var views = [];
+
+function updateChartArrays() {
+  for (var i = 0; i < allProducts.length; i++) {
+    clicks[i] = allProducts[i].clicks;
+    views[i] = allProducts[i].views;
+  }
+}
 
 function handleClick(event) {
   event.preventDefault();
@@ -150,14 +154,17 @@ function handleClick(event) {
   // tally the click
   if (event.target.id === 'left'){
     allProducts[newArray[0]].clicks += 1;
-    console.log(allProducts[newArray[0]]);
+    updateChartArrays();
+    // console.log(allProducts[newArray[0]]);
   }
   if (event.target.id === 'center'){
     allProducts[newArray[1]].clicks += 1;
-    console.log(allProducts[newArray[1]]);
+    updateChartArrays();
+    // console.log(allProducts[newArray[1]]);
   }
   if (event.target.id === 'right'){
     allProducts[newArray[2]].clicks += 1;
+    updateChartArrays();
     // console.log(allProducts[newArray[2]]);
   }
   clickCounter += 1;
@@ -177,14 +184,78 @@ function handleClick(event) {
   showThreePics();
 }
 function resultButtonHandler(event){
+  event.preventDefault();
   for (var i = 0; i < allProducts.length; i++){
     var liEl = document.createElement ('li');
-    liEl.textContent = ' Name: ' + allProducts[i].name + ' ,Number of views ' + allProducts[i].views + ' ,Number of clicks ' + allProducts[i].clicks + ' times.';
+    liEl.textContent = 'Image name is ' + allProducts[i].name + ',it has been viewed ' + allProducts[i].views + ' times. And has been clicked ' + allProducts[i].clicks + ' times.';
     list.appendChild(liEl)
   }
 }
 
+//chart
+var data = {
+  labels: names , // titles array we declared earlier
+  datasets: [
+    {
+      data: clicks, // votes array we declared earlier
+      backgroundColor: [
+        'bisque',
+        'darkgray',
+        'burlywood',
+        'lightblue',
+        'navy'
+      ],
+      hoverBackgroundColor: [
+        'purple',
+        'purple',
+        'purple',
+        'purple',
+        'purple'
+      ]
+    },
+    {
+      data: views, // votes array we declared earlier
+      backgroundColor: [
+        'bisque',
+        'darkgray',
+        'burlywood',
+        'lightblue',
+        'navy'
+      ],
+      hoverBackgroundColor: [
+        'purple',
+        'purple',
+        'purple',
+        'purple',
+        'purple'
+      ]
+    }]
+};
 
+
+function drawChart() {
+  var ctx = document.getElementById('surveychart').getContext('2d');
+  myChart = new Chart(ctx,{
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false
+    },
+    scales: [{
+      ticks: {
+        beginAtZero:true
+      }
+    }]
+  });
+  chartDrawn = true;
+}
+document.getElementById('Show-Chart').addEventListener('click', function(){
+  drawChart();
+  // setTimeout(hideChart, 5000);
+});
+if (chartDrawn) {
+  myChart.update();
+}
 
 
 // ++++++++++++++++++++++++++++
