@@ -15,11 +15,13 @@ var right = document.getElementById('right');
 var result = document.createElement('button');
 var resultContainer = document.getElementById('result');
 var list = document.getElementById ('imageList');
+// var ctx = document.getElementById('surveychart');
+// var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
+
 
 // Global variables
 // -----------------
 var allProducts = [];
-// var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck','dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-class'];
 var newArray =[];
 var oldArray =[];
 var clickCounter = 0;
@@ -62,6 +64,25 @@ new Product ('BusMallphotos/wine-glass.jpg', 'wine-glass');
 //   new Product(names[i]);
 // }
 // console.table(allProducts);
+
+
+//chart
+var myDoughtnutChart = new Chart(ctx,{
+  type: 'doughnut',
+  data: data,
+  // options: options
+});
+var data = {
+  labels:[
+    'Name',
+    'Views',
+    'Clicks'
+  ],
+  datasets: [
+    data: [name, views, clickCounter],
+  ],
+}
+myDoughtnutChart();
 
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
@@ -137,10 +158,10 @@ function handleClick(event) {
   }
   if (event.target.id === 'right'){
     allProducts[newArray[2]].clicks += 1;
-    console.log(allProducts[newArray[2]]);
+    // console.log(allProducts[newArray[2]]);
   }
   clickCounter += 1;
-  console.log(clickCounter, 'total clicks so far');
+  // console.log(clickCounter, 'total clicks so far');
 
   // check whether total clicks <25
   if (clickCounter > 25 ){
@@ -162,6 +183,10 @@ function resultButtonHandler(event){
     list.appendChild(liEl)
   }
 }
+
+
+
+
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 // CODE THAT RUNS ON PAGE LOAD
