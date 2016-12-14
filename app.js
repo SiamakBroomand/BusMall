@@ -198,37 +198,17 @@ var data = {
   datasets: [
     {
       data: clicks, // votes array we declared earlier
-      backgroundColor: [
-        'bisque',
-        'darkgray',
-        'burlywood',
+      backgroundColor:
         'lightblue',
-        'navy'
-      ],
-      hoverBackgroundColor: [
-        'purple',
-        'purple',
-        'purple',
-        'purple',
+      hoverBackgroundColor:
         'purple'
-      ]
     },
     {
       data: views, // votes array we declared earlier
-      backgroundColor: [
-        'bisque',
+      backgroundColor:
         'darkgray',
-        'burlywood',
-        'lightblue',
+      hoverBackgroundColor:
         'navy'
-      ],
-      hoverBackgroundColor: [
-        'purple',
-        'purple',
-        'purple',
-        'purple',
-        'purple'
-      ]
     }]
 };
 
