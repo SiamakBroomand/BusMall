@@ -23,6 +23,8 @@ var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'ch
 var newArray =[];
 var oldArray =[];
 var clickCounter = 0;
+var myChart;
+var chartDrawn = false;
 
 // Constructor
 // -----------------
@@ -70,6 +72,20 @@ new Product ('BusMallphotos/wine-glass.jpg', 'wine-glass');
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 
+
+// for chart
+// var views =[];
+// var clicks =[];
+//
+// function updateChartArrays(){
+//   for (var i = 0; i < names.length; i++){
+//     views[i] = allProducts[i].filepath;
+//     clicks[i] = allProducts[i].views;
+//   }
+// }
+
+
+
 function rand() {
   return Math.floor(Math.random() * allProducts.length);
   // generate a random number between 0 and allProducts.length
@@ -115,6 +131,15 @@ function showThreePics() {
 // function renderList() {
   // display a list of items and total clicks/views
 // }
+var clicks = [];
+var views = [];
+
+function updateChartArrays() {
+  for (var i = 0; i < allProducts.length; i++) {
+    clicks[i] = allProducts[i].clicks;
+    views[i] = allProducts[i].views;
+  }
+}
 
 function handleClick(event) {
   event.preventDefault();
@@ -129,18 +154,21 @@ function handleClick(event) {
   // tally the click
   if (event.target.id === 'left'){
     allProducts[newArray[0]].clicks += 1;
-    console.log(allProducts[newArray[0]]);
+    updateChartArrays();
+    // console.log(allProducts[newArray[0]]);
   }
   if (event.target.id === 'center'){
     allProducts[newArray[1]].clicks += 1;
-    console.log(allProducts[newArray[1]]);
+    updateChartArrays();
+    // console.log(allProducts[newArray[1]]);
   }
   if (event.target.id === 'right'){
     allProducts[newArray[2]].clicks += 1;
-    console.log(allProducts[newArray[2]]);
+    updateChartArrays();
+    // console.log(allProducts[newArray[2]]);
   }
   clickCounter += 1;
-  console.log(clickCounter, 'total clicks so far');
+  // console.log(clickCounter, 'total clicks so far');
 
   // check whether total clicks <25
   if (clickCounter > 25 ){
@@ -156,12 +184,80 @@ function handleClick(event) {
   showThreePics();
 }
 function resultButtonHandler(event){
+  event.preventDefault();
   for (var i = 0; i < allProducts.length; i++){
     var liEl = document.createElement ('li');
     liEl.textContent = 'Image name is ' + allProducts[i].name + ',it has been viewed ' + allProducts[i].views + ' times. And has been clicked ' + allProducts[i].clicks + ' times.';
     list.appendChild(liEl)
   }
 }
+
+//chart
+var data = {
+  labels: names , // titles array we declared earlier
+  datasets: [
+    {
+      data: clicks, // votes array we declared earlier
+      backgroundColor: [
+        'bisque',
+        'darkgray',
+        'burlywood',
+        'lightblue',
+        'navy'
+      ],
+      hoverBackgroundColor: [
+        'purple',
+        'purple',
+        'purple',
+        'purple',
+        'purple'
+      ]
+    },
+    {
+      data: views, // votes array we declared earlier
+      backgroundColor: [
+        'bisque',
+        'darkgray',
+        'burlywood',
+        'lightblue',
+        'navy'
+      ],
+      hoverBackgroundColor: [
+        'purple',
+        'purple',
+        'purple',
+        'purple',
+        'purple'
+      ]
+    }]
+};
+
+
+function drawChart() {
+  var ctx = document.getElementById('surveychart').getContext('2d');
+  myChart = new Chart(ctx,{
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false
+    },
+    scales: [{
+      ticks: {
+        beginAtZero:true
+      }
+    }]
+  });
+  chartDrawn = true;
+}
+document.getElementById('Show-Chart').addEventListener('click', function(){
+  drawChart();
+  // setTimeout(hideChart, 5000);
+});
+if (chartDrawn) {
+  myChart.update();
+}
+
+
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 // CODE THAT RUNS ON PAGE LOAD

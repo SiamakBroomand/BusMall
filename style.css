@@ -1,0 +1,22 @@
+h1{
+  text-align: center;
+  color: red;
+
+}
+li{
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 25px;
+  color: black;
+  border: 3px solid;
+  list-style: none;
+}
+section{
+  text-align: center;
+}
+img{
+  border: 1px solid black;
+}
+div{
+  font-size: 10px;
+}
