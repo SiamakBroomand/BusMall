@@ -26,6 +26,8 @@ var clickCounter = 0;
 var myChart;
 var chartDrawn = false;
 
+
+
 // Constructor
 // -----------------
 function Product(filepath, name){
@@ -73,19 +75,6 @@ new Product ('BusMallphotos/wine-glass.jpg', 'wine-glass');
 // ++++++++++++++++++++++++++++
 
 
-// for chart
-// var views =[];
-// var clicks =[];
-//
-// function updateChartArrays(){
-//   for (var i = 0; i < names.length; i++){
-//     views[i] = allProducts[i].filepath;
-//     clicks[i] = allProducts[i].views;
-//   }
-// }
-
-
-
 function rand() {
   return Math.floor(Math.random() * allProducts.length);
   // generate a random number between 0 and allProducts.length
@@ -107,7 +96,7 @@ function makeArrayOfThreeNumbers(){
   while (newArray[1] === newArray[0] || newArray[1] === oldArray[0] || newArray[1] === oldArray[1] || newArray[1] === oldArray[2]){
     newArray[1] = rand();
   // console.log('old broken array');
-    newArray[1] = rand();
+    // newArray[1] = rand();
   // console.log('caught duptes between first and second');
   }
   newArray[2] = rand();
@@ -140,6 +129,8 @@ function updateChartArrays() {
     views[i] = allProducts[i].views;
   }
 }
+
+
 
 function handleClick(event) {
   event.preventDefault();
@@ -182,6 +173,7 @@ function handleClick(event) {
   // display 3 new images
   }
   showThreePics();
+  //local storage call
 }
 function resultButtonHandler(event){
   event.preventDefault();
