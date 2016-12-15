@@ -15,7 +15,7 @@ var right = document.getElementById('right');
 var result = document.createElement('button');
 var resultContainer = document.getElementById('result');
 var list = document.getElementById ('imageList');
-var makeStorage = JSON.stringify('allProducts');
+// var makeStorage;
 // Global variables
 // -----------------
 var allProducts = [];
@@ -28,10 +28,11 @@ var chartDrawn = false;
 //-----------------------------
 //localStorage if
 if (localStorage.getItem('allProducts')){
-var localStorageAllProducts = localStorage.getItem('allProducts'); var allProducts = JSON.parse(localStorageAllProducts);
+  var localStorageAllProducts = localStorage.getItem('allProducts');
+  var storeProducts = JSON.parse(localStorageAllProducts);
 }else{
-  allProducts =[];
-  showThreePics();
+  storeProducts;
+  rand();
 }
 
 // Constructor
@@ -79,7 +80,6 @@ new Product ('BusMallphotos/wine-glass.jpg', 'wine-glass');
 // (DEFINE ACTIONS)
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
-
 
 function rand() {
   return Math.floor(Math.random() * allProducts.length);
@@ -129,6 +129,14 @@ function showThreePics() {
 // function renderList() {
   // display a list of items and total clicks/views
 // }
+
+//storeAllProducts function
+function storeAllProducts (){
+  localStorageAllProducts = JSON.stringify(allProducts);
+  localStorage.setItem('allProducts', localStorageAllProducts);
+}
+
+
 var clicks = [];
 var views = [];
 
@@ -182,6 +190,7 @@ function handleClick(event) {
   // display 3 new images
   }
   showThreePics();
+  storeAllProducts ();
   //local storage call
 }
 function resultButtonHandler(event){
