@@ -1,22 +1,35 @@
+*{
+  background-image: url('Bus_Mall.jpg');
+  background-size:780px;
+  background-repeat: no-repeat;
+   background-position:bottom;
+   background-attachment:fixed;
+   /*background-color: #fcd34e;*/
+}
 h1{
-  text-align: center;
-  color: red;
+  text-align: left;
+  color: lightgrey;
+  font-family: fantasy;
 
 }
 li{
   text-align: center;
-  font-family: sans-serif;
-  font-size: 25px;
+  font-family: cursive;;
+  font-size: 10px;
   color: black;
-  border: 3px solid;
   list-style: none;
 }
 section{
   text-align: center;
 }
 img{
+  display: inline-block;
   border: 1px solid black;
+  text-align: center;
 }
 div{
   font-size: 10px;
 }
+/*.showChart{
+text-align: left;
+}*/
