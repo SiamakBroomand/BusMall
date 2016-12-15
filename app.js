@@ -25,7 +25,7 @@ var oldArray =[];
 var clickCounter = 0;
 var myChart;
 var chartDrawn = false;
-
+//-----------------------------
 //localStorage if
 if (localStorage.getItem('allProducts')){
 var localStorageAllProducts = localStorage.getItem('allProducts'); var allProducts = JSON.parse(localStorageAllProducts);
