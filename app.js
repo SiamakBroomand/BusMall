@@ -15,7 +15,7 @@ var right = document.getElementById('right');
 var result = document.createElement('button');
 var resultContainer = document.getElementById('result');
 var list = document.getElementById ('imageList');
-
+var makeStorage = JSON.stringify('allProducts');
 // Global variables
 // -----------------
 var allProducts = [];
@@ -26,7 +26,13 @@ var clickCounter = 0;
 var myChart;
 var chartDrawn = false;
 
-
+//localStorage if
+if (localStorage.getItem('allProducts')){
+var localStorageAllProducts = localStorage.getItem('allProducts'); var allProducts = JSON.parse(localStorageAllProducts);
+}else{
+  allProducts =[];
+  showThreePics();
+}
 
 // Constructor
 // -----------------
@@ -110,10 +116,13 @@ function showThreePics() {
   makeArrayOfThreeNumbers();
   left.src = allProducts[newArray[0]].filepath;
   allProducts[newArray[0]].views +=1;
+
   center.src = allProducts[newArray[1]].filepath;
   allProducts[newArray[1]].views +=1;
+
   right.src = allProducts[newArray[2]].filepath;
   allProducts[newArray[2]].views +=1;
+
   // this will place three new images on the page
 }
 
